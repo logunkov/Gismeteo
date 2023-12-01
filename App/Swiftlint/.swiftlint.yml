@@ -168,6 +168,7 @@ identifier_name:
     - y
     - z
     - id
+    - dt
 
 # настройка уровня вложения
 nesting:
