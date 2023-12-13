@@ -1,5 +1,5 @@
 <div align="center">
-<img src="Images/logo.png" alt="Gismeteo Logo" width="256" />
+<img src="Images/Logo.png" alt="Gismeteo Logo" width="256" />
 </div>
 
 ## Task
