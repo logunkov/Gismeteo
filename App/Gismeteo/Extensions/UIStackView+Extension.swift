@@ -10,7 +10,6 @@ import UIKit
 // MARK: - UIStackView
 
 extension UIStackView {
-
 	// MARK: - Internal methods
 
 	func addArrangedSubviews(_ views: [UIView]) {

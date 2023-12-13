@@ -10,7 +10,6 @@ import UIKit
 // MARK: - UIView
 
 extension UIView {
-
 	// MARK: - Internal methods
 
 	func addSubviews(_ views: [UIView]) {

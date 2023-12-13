@@ -8,11 +8,10 @@
 // MARK: - String
 
 extension String {
-
 	// MARK: - Internal methods
 
 	func deletingPrefix() -> String {
-		let newString = self.components(separatedBy: L10n.StringS.prefix)
+		let newString = components(separatedBy: L10n.StringS.prefix)
 		return newString[1]
 	}
 }
@@ -20,7 +19,6 @@ extension String {
 // MARK: - StringProtocol
 
 extension StringProtocol {
-
 	// MARK: - Internal properties
 
 	var firstCapitalized: String { prefix(1).capitalized + dropFirst() }

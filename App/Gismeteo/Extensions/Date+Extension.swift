@@ -10,24 +10,23 @@ import Foundation
 // MARK: - Date
 
 extension Date {
-
 	// MARK: - Internal methods
 
 	func getTimeForDate() -> String {
 		let formatter = DateFormatter()
-		formatter.dateFormat = "HH:mm"
+		formatter.dateFormat = L10n.DateFormat.time
 		return formatter.string(from: self)
 	}
 
 	func getHourForDate() -> String {
 		let formatter = DateFormatter()
-		formatter.dateFormat = "HH"
+		formatter.dateFormat = L10n.DateFormat.hour
 		return formatter.string(from: self)
 	}
 
 	func getDayForDate() -> String {
 		let formatter = DateFormatter()
-		formatter.dateFormat = "EEEE"
+		formatter.dateFormat = L10n.DateFormat.day
 		return formatter.string(from: self)
 	}
 }

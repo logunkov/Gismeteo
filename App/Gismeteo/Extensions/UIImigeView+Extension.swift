@@ -1,5 +1,5 @@
 //
-//  UIImageView+Extension.swift
+//  UIImigeView+Extension.swift
 //  Gismeteo
 //
 //  Created by Constantin on 28.11.2023.
@@ -10,7 +10,6 @@ import UIKit
 // MARK: - UIImageView
 
 extension UIImageView {
-
 	// MARK: - Internal methods
 
 	func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
@@ -21,7 +20,7 @@ extension UIImageView {
 				let mimeType = response?.mimeType, mimeType.hasPrefix(L10n.Downloaded.image),
 				let data = data, error == nil,
 				let image = UIImage(data: data)
-				else { return }
+			else { return }
 			DispatchQueue.main.async {
 				self.image = image
 			}
