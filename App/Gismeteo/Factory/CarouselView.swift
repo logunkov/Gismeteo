@@ -10,13 +10,12 @@ import UIKit
 // MARK: - CarouselView
 
 final class CarouselView: UIView {
-
 	// MARK: - Private properties
 
 	private let carouselBounds = UIScreen.main.bounds
+	private let pageControl = Factory.shared.createPageControl()
+	private let scrollView = Factory.shared.createScrollView()
 	private var carouselViews = [UIView]()
-	private lazy var scrollView = Factory.shared.createScrollView()
-	private lazy var pageControl = Factory.shared.createPageControl()
 
 	// MARK: - Life Cycle
 
@@ -36,7 +35,6 @@ final class CarouselView: UIView {
 
 		for (index, imageView) in carouselViews.enumerated() {
 			let xPosition = imageWidth * CGFloat(index)
-
 			imageView.frame = CGRect(x: xPosition, y: .zero, width: imageWidth, height: imageHeight)
 		}
 
@@ -47,7 +45,6 @@ final class CarouselView: UIView {
 	// MARK: - Internal methods
 
 	func setViews(_ views: [UIView]) {
-
 		for carouselView in carouselViews {
 			carouselView.removeFromSuperview()
 		}
@@ -59,8 +56,22 @@ final class CarouselView: UIView {
 		}
 
 		pageControl.numberOfPages = views.count
+		if pageControl.numberOfPages != Int.zero {
+			pageControl.setIndicatorImage(UIImage(systemName: L10n.SystemImage.location), forPage: Int.zero)
+		}
 
 		layoutSubviews()
+	}
+
+	func setContentOffset(index: Int) {
+		let pageWidth = carouselBounds.width
+		let contentOffset = CGPoint(x: pageWidth * CGFloat(index), y: CGFloat.zero)
+		scrollView.setContentOffset(contentOffset, animated: true)
+		scrollViewDidScroll(scrollView)
+	}
+
+	func setPageControlisHidden(isHidden: Bool) {
+		pageControl.isHidden = isHidden
 	}
 
 	// MARK: - Private methods
