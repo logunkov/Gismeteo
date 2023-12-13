@@ -5,3 +5,62 @@
   Created by Constantin on 23.11.2023.
   
 */
+"FatalError.required" = "init(coder:) has not been implemented";
+"FatalError.cell" = "Unable to dequeue Cell";
+
+"Cell.findTableView" = "findTableView";
+"Cell.dailyTableView" = "dailyTableView";
+"Cell.hourlyTableView" = "hourlyTableView";
+"Cell.hourlyCollectionView" = "hourlyCollectionView";
+
+"WeatherAPI.scheme" = "http";
+"WeatherAPI.host" = "api.openweathermap.org";
+"WeatherAPI.path" = "/data/2.5";
+"WeatherAPI.key" = "289d79262f138bd6ebb226285fd277e3";
+"WeatherAPI.urlString" = "http://openweathermap.org/img/wn/";
+"WeatherAPI.image" = "@2x.png";
+"WeatherAPI.hostImage" = "http://openweathermap.org/img/wn/";
+
+"API.path" = "/onecall";
+"API.pathCity" = "/weather";
+"API.city" = "q";
+"API.lat" = "lat";
+"API.lon" = "lon";
+"API.exclude" = "exclude";
+"API.units" = "units";
+"API.appid" = "appid";
+"API.minutely" = "minutely";
+"API.metric" = "metric";
+"API.citiesData" = "CitiesData.plist";
+
+"StringS.space" = " ";
+"StringS.empty" = "";
+"StringS.prefix" = "/";
+"StringS.replacing" = "_";
+
+"StringS.max" = "max: ";
+"StringS.min" = "min: ";
+"StringS.format" = "%%.f";
+"StringS.scalePlus" = "°,";
+"StringS.scale" = "°";
+
+"StringS.now" = "now";
+"StringS.sunset" = "Sunset";
+"StringS.sunrise" = "Sunrise";
+"StringS.ok" = "Ok";
+"StringS.error" = "Error";
+"StringS.placeholder" = "Search for a city or airport";
+
+"Downloaded.image" = "image";
+"Downloaded.statusCode" = "200";
+
+"DateFormat.day" = "EEEE";
+"DateFormat.time" = "HH:mm";
+"DateFormat.hour" = "HH";
+
+"SystemImage.plus" = "plus";
+"SystemImage.trash" = "trash";
+"SystemImage.list" = "list.bullet";
+"SystemImage.multiply" = "multiply";
+"SystemImage.location" = "location.fill";
+"SystemImage.magnifyingglass" = "magnifyingglass";

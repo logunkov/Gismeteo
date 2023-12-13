@@ -44,12 +44,18 @@ internal struct ColorAsset {
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal static let logo = ImageAsset(name: "Logo")
+  internal enum Sun {
+    internal static let sunrise = ImageAsset(name: "sunrise")
+    internal static let sunset = ImageAsset(name: "sunset")
+  }
 
   internal static let allColors: [ColorAsset] = [
     accentColor,
   ]
   internal static let allImages: [ImageAsset] = [
     logo,
+    Sun.sunrise,
+    Sun.sunset,
   ]
   @available(*, deprecated, renamed: "allImages")
   internal static let allValues: [AssetType] = allImages
