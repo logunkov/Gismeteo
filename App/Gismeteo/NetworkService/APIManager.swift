@@ -10,10 +10,9 @@ import CoreLocation
 // MARK: - APIManager
 
 final class APIManager {
-
 	// MARK: - Internal properties
 
-	static let shared = APIManager()
+	static let shared: APIManager = .init()
 
 	// MARK: - Lifecycle
 
@@ -32,6 +31,20 @@ final class APIManager {
 				URLQueryItem(name: L10n.Api.lon, value: String(longitude)),
 				URLQueryItem(name: L10n.Api.exclude, value: L10n.Api.minutely),
 				URLQueryItem(name: L10n.Api.units, value: L10n.Api.metric),
+				URLQueryItem(name: L10n.Api.appid, value: OpenWeatherAPI.key)
+			]
+		guard let componentsString = components.string else { return L10n.StringS.space }
+		return componentsString
+	}
+
+	func getCityURL(city: String) -> String {
+		var components = URLComponents()
+		components.scheme = OpenWeatherAPI.scheme
+		components.host = OpenWeatherAPI.host
+		components.path = OpenWeatherAPI.path + L10n.Api.pathCity
+		components.queryItems =
+			[
+				URLQueryItem(name: L10n.Api.city, value: city),
 				URLQueryItem(name: L10n.Api.appid, value: OpenWeatherAPI.key)
 			]
 		guard let componentsString = components.string else { return L10n.StringS.space }

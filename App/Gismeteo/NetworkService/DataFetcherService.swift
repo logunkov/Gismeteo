@@ -10,7 +10,6 @@ import CoreLocation
 // MARK: - DataFetcherService
 
 final class DataFetcherService {
-
 	// MARK: - Private properties
 
 	private let networkDataFetcher = NetworkDataFetcher()
@@ -24,7 +23,24 @@ final class DataFetcherService {
 		) -> Void
 	) {
 		let urlString = APIManager.shared.getLocationCurrentWeatherURL(latitude: latitude, longitude: longitude)
+		networkDataFetcher.fetchData(urlString: urlString, completion: completion)
+	}
 
+	func fetchCityData(
+		city: String,
+		completion: @escaping (CityModel?
+		) -> Void
+	) {
+		let urlString = APIManager.shared.getCityURL(city: city)
+		networkDataFetcher.fetchData(urlString: urlString, completion: completion)
+	}
+
+	func fetchErrorData(
+		city: String,
+		completion: @escaping (ErrorModel?
+		) -> Void
+	) {
+		let urlString = APIManager.shared.getCityURL(city: city)
 		networkDataFetcher.fetchData(urlString: urlString, completion: completion)
 	}
 }
