@@ -18,7 +18,7 @@ protocol IFindViewControllerDelegate: AnyObject {
 protocol IFindViewController: AnyObject {
 	func removeWeatherModel(index: Int)
 	func routeToGoBack(index: Int, weatherModels: [WeatherModel])
-	func routeToCityScene(viewModel: FindModel.ViewModel)
+	func routeToCityScene()
 	func routeToAlert(viewModel: FindModel.ViewModel)
 }
 
@@ -28,12 +28,13 @@ final class FindViewController: UIViewController {
 	// MARK: - Internal Properties
 
 	var interactor: IFindInteractor?
+	var router: IFindRouter?
 	weak var delegate: IFindViewControllerDelegate?
+	var weatherModels = [WeatherModel]()
 
 	// MARK: - Private Properties
 
 	private let findView: IFindView
-	private var weatherModels = [WeatherModel]()
 
 	// MARK: - Lifecycle
 
@@ -72,21 +73,18 @@ extension FindViewController: IFindViewController {
 	}
 
 	func routeToGoBack(index: Int, weatherModels: [WeatherModel]) {
-		dismiss(animated: true) {
-			self.delegate?.didCloseToFindScene(index: index, weatherModels: weatherModels)
-		}
+		guard let delegate else { return }
+		router?.routeToGoBack(index: index, weatherModels: weatherModels, delegate: delegate)
 	}
 
-	func routeToCityScene(viewModel _: FindModel.ViewModel) {
+	func routeToCityScene() {
 		guard let viewController = MainAssembler().assembly(isMain: false) as? MainViewController else { return }
 		viewController.delegate = self
-		present(viewController, animated: true)
+		router?.routeToCityScene(viewController: viewController)
 	}
 
 	func routeToAlert(viewModel: FindModel.ViewModel) {
-		guard let message = viewModel.error?.message else { return }
-		let alert = Factory.shared.createAlert(message: message.firstCapitalized)
-		present(alert, animated: true, completion: nil)
+		router?.routeToAlert(viewModel: viewModel)
 	}
 }
 

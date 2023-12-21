@@ -37,9 +37,8 @@ final class FindPresenter: IFindPresenter {
 		viewController?.routeToGoBack(index: index, weatherModels: weatherModels)
 	}
 
-	func routeCityData(response: FindModel.Response) {
-		let viewModel = FindModel.ViewModel(city: response.city)
-		viewController?.routeToCityScene(viewModel: viewModel)
+	func routeCityData(response _: FindModel.Response) {
+		viewController?.routeToCityScene()
 	}
 
 	func routeErrorData(response: FindModel.Response) {

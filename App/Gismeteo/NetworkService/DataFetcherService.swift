@@ -7,9 +7,32 @@
 
 import CoreLocation
 
+// MARK: - IDataFetcherService
+
+protocol IDataFetcherService {
+	func fetchWeatherData(
+		latitude: CLLocationDegrees,
+		longitude: CLLocationDegrees,
+		completion: @escaping (WeatherModel?
+		) -> Void
+	)
+
+	func fetchCityData(
+		city: String,
+		completion: @escaping (CityModel?
+		) -> Void
+	)
+
+	func fetchErrorData(
+		city: String,
+		completion: @escaping (ErrorModel?
+		) -> Void
+	)
+}
+
 // MARK: - DataFetcherService
 
-final class DataFetcherService {
+final class DataFetcherService: IDataFetcherService {
 	// MARK: - Private properties
 
 	private let networkDataFetcher = NetworkDataFetcher()

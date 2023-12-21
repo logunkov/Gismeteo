@@ -24,7 +24,7 @@ final class FindViewControllerSpy: IFindViewController {
 		isCalledRender = true
 	}
 
-	func routeToCityScene(viewModel _: FindModel.ViewModel) {
+	func routeToCityScene() {
 		isCalledRender = true
 	}
 

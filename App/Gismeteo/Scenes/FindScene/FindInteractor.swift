@@ -21,12 +21,13 @@ final class FindInteractor: IFindInteractor {
 	// MARK: - Private properties
 
 	private let presenter: IFindPresenter?
-	private let networkService = DataFetcherService()
+	private let networkService: IDataFetcherService?
 
 	// MARK: - Lifecycle
 
-	init(presenter: IFindPresenter) {
+	init(presenter: IFindPresenter, networkService: IDataFetcherService?) {
 		self.presenter = presenter
+		self.networkService = networkService
 	}
 
 	// MARK: - Internal methods
@@ -36,7 +37,7 @@ final class FindInteractor: IFindInteractor {
 	}
 
 	func fetchCityData(request: FindModel.Request) {
-		networkService.fetchCityData(city: request.findCity) { [weak self] city in
+		networkService?.fetchCityData(city: request.findCity) { [weak self] city in
 			guard let self, let city else { return }
 			Repository.shared.cache(city: City(latitude: city.coord.lat, longitude: city.coord.lon))
 			let response = FindModel.Response(city: CityModel(coord: city.coord))
@@ -44,7 +45,7 @@ final class FindInteractor: IFindInteractor {
 			self.presenter?.routeCityData(response: response)
 		}
 
-		networkService.fetchErrorData(city: request.findCity) { [weak self] error in
+		networkService?.fetchErrorData(city: request.findCity) { [weak self] error in
 			guard let self, let error else { return }
 			let response = FindModel.Response(error: error)
 			self.presenter?.routeErrorData(response: response)

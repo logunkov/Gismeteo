@@ -15,8 +15,11 @@ final class MainAssembler {
 	func assembly(isMain: Bool) -> UIViewController {
 		let view = MainView(isMain: isMain)
 		let viewController = MainViewController(mainView: view, isMain: isMain)
+		let router = MainRouter(mainViewController: viewController)
+		viewController.router = router
 		let presenter = MainPresenter(viewController: viewController)
-		let interactor = MainInteractor(presenter: presenter)
+		let dataFetcherService = DataFetcherService()
+		let interactor = MainInteractor(presenter: presenter, networkService: dataFetcherService)
 		viewController.interactor = interactor
 		return viewController
 	}

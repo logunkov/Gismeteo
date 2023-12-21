@@ -29,6 +29,7 @@ final class MainViewController: UIViewController {
 
 	let isMain: Bool
 	var interactor: IMainInteractor?
+	var router: IMainRouter?
 	weak var delegate: IMainViewControllerDelegate?
 
 	// MARK: - Private Properties
@@ -88,18 +89,16 @@ extension MainViewController: IMainViewController {
 		guard let weatherModel = viewModel?.weatherModel else { return }
 		guard let viewController = FindAssembler().assembly(weatherModel: weatherModel) as? FindViewController else { return }
 		viewController.delegate = self
-		present(viewController, animated: true)
+		router?.routeToFindScene(viewController: viewController)
 	}
 
 	func routeToGoBack() {
-		dismiss(animated: true)
+		router?.routeToGoBack()
 	}
 
 	func routeToGoBackWithWeatherModel() {
-		dismiss(animated: true) {
-			guard let weatherModel = self.viewModel?.weatherModel.first else { return }
-			self.delegate?.didCloseToCityScene(weatherModel: weatherModel)
-		}
+		guard let weatherModel = viewModel?.weatherModel.first, let delegate else { return }
+		router?.routeToGoBackWithWeatherModel(weatherModel: weatherModel, delegate: delegate)
 	}
 }
 

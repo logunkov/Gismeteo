@@ -21,15 +21,16 @@ protocol IMainInteractor {
 final class MainInteractor: IMainInteractor {
 	// MARK: - Private properties
 
-	private let networkService = DataFetcherService()
+	private let networkService: IDataFetcherService?
 	private let dispatchGroup = DispatchGroup()
-	private var presenter: IMainPresenter?
+	private let presenter: IMainPresenter?
 	private var weatherModel = [WeatherModel]()
 
 	// MARK: - Lifecycle
 
-	init(presenter: IMainPresenter) {
+	init(presenter: IMainPresenter, networkService: IDataFetcherService) {
 		self.presenter = presenter
+		self.networkService = networkService
 	}
 
 	// MARK: - Internal methods
@@ -38,7 +39,7 @@ final class MainInteractor: IMainInteractor {
 		request.cities.forEach { [weak self] city in
 			guard let self else { return }
 			dispatchGroup.enter()
-			self.networkService.fetchWeatherData(latitude: city.latitude, longitude: city.longitude) { [weak self] weather in
+			self.networkService?.fetchWeatherData(latitude: city.latitude, longitude: city.longitude) { [weak self] weather in
 				guard let self, let weather else { return }
 				self.weatherModel.append(weather)
 				self.dispatchGroup.leave()

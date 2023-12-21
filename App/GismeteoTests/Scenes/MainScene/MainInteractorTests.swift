@@ -14,6 +14,7 @@ final class MainInteractorTests: XCTestCase {
 	// MARK: - Private Properties
 
 	private let presenter = MainPresenterSpy()
+	private let networkService = DataFetcherService()
 
 	// MARK: - Internal Methods
 
@@ -34,6 +35,6 @@ final class MainInteractorTests: XCTestCase {
 
 private extension MainInteractorTests {
 	func makeSut() -> MainInteractor {
-		MainInteractor(presenter: presenter)
+		MainInteractor(presenter: presenter, networkService: networkService)
 	}
 }

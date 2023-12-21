@@ -15,9 +15,12 @@ final class FindAssembler {
 	func assembly(weatherModel: [WeatherModel]) -> UIViewController {
 		let view = FindView()
 		let viewController = FindViewController(findView: view, weatherModel: weatherModel)
+		let router = FindRouter(mainViewController: viewController)
+		viewController.router = router
 		viewController.modalPresentationStyle = .overFullScreen
 		let presenter = FindPresenter(viewController: viewController)
-		let interactor = FindInteractor(presenter: presenter)
+		let dataFetcherService = DataFetcherService()
+		let interactor = FindInteractor(presenter: presenter, networkService: dataFetcherService)
 		viewController.interactor = interactor
 		return viewController
 	}

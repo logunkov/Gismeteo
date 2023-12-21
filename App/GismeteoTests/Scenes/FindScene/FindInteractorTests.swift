@@ -14,6 +14,7 @@ final class FindInteractorTests: XCTestCase {
 	// MARK: - Private Properties
 
 	private let presenter = FindPresenterSpy()
+	private let networkService = DataFetcherService()
 
 	// MARK: - Internal Methods
 
@@ -28,6 +29,6 @@ final class FindInteractorTests: XCTestCase {
 
 private extension FindInteractorTests {
 	func makeSut() -> FindInteractor {
-		FindInteractor(presenter: presenter)
+		FindInteractor(presenter: presenter, networkService: networkService)
 	}
 }
